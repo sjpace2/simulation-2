@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import axios from 'axios';
+
 class Wizard extends Component {
     constructor (){
         super()
@@ -42,7 +44,17 @@ class Wizard extends Component {
             zipcode: value
         })
     }
- 
+
+    addNewHouse = () => {
+        axios.post('/api/houses', {
+            name: this.state.name,
+            adddress: this.state.address,
+            city: this.state.city,
+            state: this.state.state,
+            zipcode: this.state.zipcode
+        }).then(this.props.history.push('/'))
+    }
+  
     render () {
         return(
             <div>
@@ -55,7 +67,7 @@ class Wizard extends Component {
                     <input placeholder = 'zipcode' onChange={ (e)=> this.handleZipCodeChange(e.target.value) } type="text"/>
                 </section>
                 
-                
+                <button onClick={ ()=> this.addNewHouse() } >Complete</button>
                 <button onClick={ ()=> this.props.history.push('/') }>Cancel</button>
 
             </div>

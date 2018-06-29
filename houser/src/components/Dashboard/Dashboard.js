@@ -21,11 +21,21 @@ class Dashboard extends Component {
         })
     }
 
+    deleteHouse = (id) => {
+        axios.delete(`/api/houses/${id}`).then(response => {
+            this.setState({
+                list: response.data
+            })
+           
+        })
+    }
+
+
 
    render () {
       
     let displayedList = this.state.list.map((house, index) => {
-           return <House key={ index } house={ house }/>
+           return <House key={ index } house={ house } deleteHouse={this.deleteHouse}/>
             console.log(displayedList)
         })
        return(

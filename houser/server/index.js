@@ -17,6 +17,8 @@ massive( CONNECTION_STRING )
     .catch( err=>console.log(err));
 
 app.get('/api/houses', ctrl.getAllHouses)
+app.post('/api/houses', ctrl.addHouse)
+app.delete('/api/houses/:id', ctrl.deleteHouse)
 
 
 app.listen( PORT || 3005, () => console.log(`Listening on port ${PORT || 3005}`));
