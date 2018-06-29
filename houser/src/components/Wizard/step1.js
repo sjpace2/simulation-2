@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
-
+import {connect} from 'react-redux';
 import axios from 'axios';
 
-class Wizard extends Component {
+
+
+class step1 extends Component {
     constructor (){
         super()
-        this.state = {
-            name: "",
-            address: "",
-            city: "",
-            state: "",
-            zipcode: 0
-        }
+        // this.state = {
+        //     name: "",
+        //     address: "",
+        //     city: "",
+        //     State: "",
+        //     zipcode: 0
+        // }
  
     }
 
@@ -35,7 +37,7 @@ class Wizard extends Component {
     
     handleStateChange = (value) => {
         this.setState({
-            state: value
+            State: value
         })
     }
     
@@ -50,8 +52,10 @@ class Wizard extends Component {
     
   
     render () {
+       
         return(
             <div>
+                
                 <h2>Step 1</h2>
                 <section>
                     <input placeholder = 'name' onChange={ (e)=> this.handleNameChange(e.target.value) } type="text"/>
@@ -70,4 +74,31 @@ class Wizard extends Component {
     }
  }
 
- export default Wizard;
+ function mapStateToProps(state){
+    const { name, address, city, State, zipcode } = state;
+    let newObj = {
+        name: name,
+        address: address,
+        city: city,
+        State: State,
+        zipcode: zipcode
+    }
+    return {
+        name, address, city, State, zipcode
+    }
+    
+ }
+
+
+
+ export default connect( 
+     mapStateToProps, 
+    {addName},
+    {addAddress},
+    {addCity},
+    {addState},
+    {addZipcode},
+    {addURL},
+    {addMortgage},
+    {addRent}
+    )(step1);

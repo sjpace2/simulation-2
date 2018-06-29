@@ -16,6 +16,8 @@ massive( CONNECTION_STRING )
     })
     .catch( err=>console.log(err));
 
+app.use(express.static( `${__dirname}/../build`));
+
 app.get('/api/houses', ctrl.getAllHouses)
 app.post('/api/houses', ctrl.addHouse)
 app.delete('/api/houses/:id', ctrl.deleteHouse)

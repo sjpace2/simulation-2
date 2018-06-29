@@ -42,7 +42,7 @@ class Dashboard extends Component {
            <div>
                <h2>Dashboard</h2>
                
-                <button onClick={ ()=> this.props.history.push('/wizard/step1') }>Add new property</button>
+                <button onClick={ ()=> this.props.history.push('/wizard') }>Add new property</button>
 
                 <br/>
                 {displayedList}
